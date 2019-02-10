@@ -1,0 +1,64 @@
+#include "LinkedList.h"
+#include <string>
+
+void printMenu()
+{
+	std::cout << "=======Linked List Menu=======" << std::endl;
+	std::cout << "      1: Add a new item" << std::endl;
+	std::cout << "      2: Remove an item" << std::endl;
+	std::cout << "      3: Show the number of items" << std::endl;
+	std::cout << "      4: Show all items" << std::endl;
+	std::cout << "      5: Exit the Program" << std::endl;
+
+}
+
+int main () 
+{
+
+	LinkedList<int> sampleList;
+	std::cout << sampleList.getSize() << std::endl;
+	
+
+	int option;	
+	printMenu();
+
+	while (true) {
+	std::cout << "Enter an option: ";
+	std::cin  >> option;
+	
+
+
+		switch(option) 
+		{
+			case 1: //////////////////////////////////////////////////////////////////////////////////
+
+				int data;
+				std::cout << "Enter an Int: ";
+				std::cin >> data;
+
+				sampleList.add(data);
+			
+				std::cout << "case 1" << std::endl;		
+			break; ///////////////////////////////////////////////////////////////////////////////////
+			case 2: //////////////////////////////////////////////////////////////////////////////////
+
+				std::cout << "case 2" << std::endl;		
+			break; ///////////////////////////////////////////////////////////////////////////////////
+			case 3: //////////////////////////////////////////////////////////////////////////////////
+				std::cout << sampleList.getSize() << std::endl;
+				std::cout << "case 3" << std::endl;		
+			break; ///////////////////////////////////////////////////////////////////////////////////
+			case 4: //////////////////////////////////////////////////////////////////////////////////
+				sampleList.showAll();
+				std::cout << "case 4" << std::endl;		
+			break; ///////////////////////////////////////////////////////////////////////////////////
+			case 5: //////////////////////////////////////////////////////////////////////////////////
+				std::cout << "case 5" << std::endl;		
+				return 0;
+			break; ///////////////////////////////////////////////////////////////////////////////////
+			default: /////////////////////////////////////////////////////////////////////////////////
+				std::cout << "Invalid Option" << std::endl;	
+				printMenu();
+		} //end switch(option)
+	} //end while(true)
+} //end main
