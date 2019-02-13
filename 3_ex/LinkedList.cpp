@@ -7,7 +7,7 @@ m_head(NULL),
 m_tail(NULL),
 m_size(0)
 {
-std::cout << "Linked List default ctor" << std::endl;
+
 } //end default constructor
 
 template <class T>
@@ -18,14 +18,13 @@ m_tail(linkedlist.m_tail),
 m_size(linkedlist.m_size),
 */
 {
-std::cout << "Linked List copy ctor" << std::endl;
+
 }
 
 template <class T>
 LinkedList<T>::~LinkedList() 
 {
 	clear();
-std::cout << "Linked List dtor" << std::endl;
 } //end dtor
 
 //====== Member Functions =====================================================
@@ -61,28 +60,44 @@ bool LinkedList<T>::add(const T& data)
 
 	m_head = ptrToAdd;
 	m_size++;
-	std::cout << "Linkedlist add success, size: " << m_size << std::endl;
 
-	return true
+	return true;
 } //end add
 
 template <class T>
-bool LinkedList<T>::remove(const Node<T>& node)
+bool LinkedList<T>::remove(const T& data)
 {
-	Node<T> * ptrToDel = node;	
-	if(!isEmpty() && ptrToDel != NULL) 
+
+
+	Node<T> * ptrToDel;		
+	for(ptrToDel = m_head; ptrToDel != NULL; ptrToDel = ptrToDel->getNext())
 	{
-	node->getData() = m_head->getData();
-	
-	m_size--;
-	std::cout << "linedlist remove success, size: " << m_size << std::endl;
-	return true;		
-	} //end if
-	else 
-	{
-		return false;
-	} //end else
+		if(ptrToDel->getData() == data)
+		{
+			//assign m_head data to Node
+			ptrToDel->setData(m_head->getData());
+			//delete m_head by assign ptrToDel to it, assigning ptrToDel to m_head->m_next, and deleting ptrToDel.
+			ptrToDel = m_head;
+			m_head = m_head->getNext();
+			delete ptrToDel;
+			
+			m_size--;
+
+			return true;
+		} //end if
 		
+			
+	} //end for 
+	
+	if (isEmpty())
+	{
+		std::cout << "Linked list is empty, no members to delete" << std::endl;
+	} //end else if
+	else
+	{
+		std::cout << data << " not found in list" << std::endl;
+	}
+	return false;
 	
 }
 
@@ -95,9 +110,7 @@ void LinkedList<T>::clear()
 		m_head = tmpPtrDel->getNext();
 		delete tmpPtrDel;
 		m_size--;
-		std::cout << m_size << std::endl;
 	} //end while
-	std::cout << "linkedlist clear success, size: " << m_size << std::endl;
 } //end clear
 
 template <class T>

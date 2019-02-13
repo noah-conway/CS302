@@ -7,7 +7,7 @@ template <class T>
 Node<T>::Node() :
 m_next(NULL)
 { 
-cout << "Node Default Ctor" << endl;
+
 } 
 
 template <class T>
@@ -15,7 +15,7 @@ Node<T>::Node (const T &data) :
 m_data(data),
 m_next(NULL) 
 {
-cout << "Node Data Ctor" << endl;
+
 }
 
 template <class T>
@@ -23,7 +23,7 @@ Node<T>::Node (const T &data, Node<T>* next) :
 m_data(data),
 m_next(next)
 {
-cout << "Note data & Next ctor" << endl;
+
 }
 
 //====== Member Functions =====================================================
